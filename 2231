@@ -1,0 +1,59 @@
+//요즘 백준 알고리즘 단계별로 풀기를 푸는이유는 프로그래머스 1단계 문제를 거이다 풀었다(6개정도 남은거 같은데,,?) , 2단계 부터는 bfs같은 알고리즘 개념을 알더라도 문제에 직접 적용해
+//풀수있는 능력이 부족한것을 느끼고,,, 백준 알고리즘으로 연습을 좀 하고 다시 2단계를 도전하려 한다,,,
+//코테 카카오,네이버 둘다 봤는데 보고 아 어떻게 풀어야 할지 감은 잡히는데,,,, 예를들면 bfs문제 같은경우 이런식으로 풀어야지 해도,,, 막상 idle없이 손코딩 하니,,, 생각이 안난다,,,
+
+
+
+package main.main2;
+
+import java.util.*;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        Scanner sc = new Scanner(System.in);
+
+        int N = sc.nextInt();
+
+        int result = cut(N);
+
+        System.out.println(result);
+
+    }
+
+    static int cut(int N){
+        int answer =0;
+        int arrSum =0;
+        Set<Integer> set = new HashSet<>();
+
+        for(int i=0;i<N;i++){
+            String num=""+(N-i);    //뺀값
+
+            int parseNum = Integer.parseInt(num);
+
+            String[] arr = num.split("");
+
+            for(int j=0;j<arr.length;j++){
+
+                arrSum += Integer.parseInt(arr[j]) ;
+            }
+            if(arrSum+parseNum==N){
+                set.add(parseNum);
+            }
+            arrSum=0;
+        }
+
+        Integer[] arr = set.toArray(new Integer[0]);
+        Arrays.sort(arr);
+        if(arr.length!=0 && arr[0]!=0){
+            return arr[0];
+        }
+
+        return answer;
+    }
+
+
+
+
+}
