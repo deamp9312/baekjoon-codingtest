@@ -1,0 +1,60 @@
+//알고리즘 유형별로 들어가서 풀면 아 이거 이런식으로 푸는법을 생각하는데 그냥 랜덤 문제 들어가서 보면 아직 익숙치 않은 알고리즘 문제의 경우는 잘 생각 나지 않았다,,, 그러하여 푼 결과,,,
+
+import java.util.*;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        Scanner sc = new Scanner(System.in);
+
+        int K = sc.nextInt();
+        int N = sc.nextInt();
+
+        int[] arr = new int[K];
+
+
+        for(int i=0;i<K;i++){
+            arr[i] = sc.nextInt();
+        }
+        int an = cut(K, N, arr);
+
+        System.out.println("an = " + an);
+
+    }
+
+
+    static int cut(int K, int N, int[] arr) {
+
+        int answer = 0;
+        int count = 0;
+        Set<Integer> set = new HashSet<>();
+
+        Arrays.sort(arr);
+
+        while (true) {
+            answer++;
+            count = 0;
+
+            if (arr[0] < answer) break;
+
+            for (int i = 0; i < K; i++) {
+                count += arr[i] / answer;
+            }
+            if (count == N) {
+                set.add(answer);
+
+            }
+        }
+        Integer[] list = set.toArray(new Integer[0]);
+        Arrays.sort(list);
+
+        
+        return list[list.length - 1];
+
+        
+
+    }
+
+
+}
