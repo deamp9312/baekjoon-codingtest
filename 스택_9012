@@ -1,0 +1,54 @@
+package main.main2;
+
+import java.io.BufferedOutputStream;
+import java.util.*;
+import java.io.IOException;
+import java.util.stream.Collectors;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+
+        Scanner sc = new Scanner(System.in);
+
+
+        int K = sc.nextInt();
+        String[] arr = new String[K];
+
+        int answer =0;
+
+
+
+        for(int i=0;i<K;i++){
+            arr[i] = sc.next();
+            Stack<String> stack = new Stack<>();
+
+
+            for(int k=0;k<arr[i].length();k++) {
+                if (arr[i].charAt(k) == '(') {
+                    stack.add("(");
+
+                } else if (arr[i].charAt(k) == ')') {
+                    if (stack.size()!=0&& stack.peek().equals("(")) {
+                        stack.pop();
+                    }else{
+                        stack.push(")");
+                    }
+                }
+
+            }
+
+            if(stack.size()!=0){
+                System.out.println("NO");
+            }else {
+                System.out.println("YES");
+            }
+
+        }
+
+
+
+    }
+
+
+}
