@@ -1,0 +1,53 @@
+//알고리즘은 아는데(?) 코드로 구현하려니 막막했다,,, 하지만 갓 구글(?) 해당 문제&알고리즘에 대한 자세한 설명이 있는 사이트를 발견,,, 학습을 하였고 깃에 올린다,,,
+//https://st-lab.tistory.com/114
+//해당 링크, 백준에는 정답을 제출하지 않았다,,, 나중에 혼자 풀수있을때 다시 한번 보기위해,,
+
+
+package main.main2;
+
+import java.io.BufferedOutputStream;
+import java.util.*;
+import java.io.IOException;
+import java.util.stream.Collectors;
+
+public class Main {
+
+    public static int[] arr;
+    public static boolean[] visit;
+
+    public static void main(String[] args) throws IOException {
+
+        Scanner sc = new Scanner(System.in);
+
+
+        int N = sc.nextInt();   //해당 숫자 까지 카운트
+        int M = sc.nextInt();   //자릿수
+
+        arr = new int[M];
+        visit = new boolean[N];
+        back(N, M, 0);
+
+
+
+    }
+
+    static void back(int N,int M,int depth){
+        if (depth == M) {
+            for (int val : arr) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+            return;
+        }
+
+        for (int i = 0; i < N; i++) {
+            if (!visit[i]) {
+                visit[i] = true;
+                arr[depth] = i + 1;
+                back(N, M, depth + 1);
+                visit[i] = false;
+            }
+        }
+    }
+
+}
