@@ -1,0 +1,123 @@
+///1번 풀이는 stack으로 쉽게 푸려고 했는데 메모리 제한이 걸려버렸다,,,
+
+package main.main2;
+
+import java.io.BufferedOutputStream;
+import java.util.*;
+import java.io.IOException;
+import java.util.stream.Collectors;
+
+public class Main {
+
+
+
+    public static void main(String[] args) throws IOException {
+
+        Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+
+
+        int N = sc.nextInt();
+        String[] anwer = new String[N];
+        sc.nextLine();
+
+        for(int i=0;i<N;i++){
+            anwer[i] = "";
+            String str = sc.nextLine();
+
+            Stack<Character> stack = new Stack<>();
+
+
+            for(int j=0;j<str.length();j++){
+                if(str.charAt(j)==' '){
+                    while(stack.size()!=0){
+                        anwer[i] += stack.pop();
+
+                    }
+                    anwer[i]+=" ";
+                    continue;
+                }
+                    stack.push(str.charAt(j));
+
+                if(j==(str.length()-1)){
+                    while(stack.size()!=0){
+                        anwer[i] += stack.pop();
+
+                    }
+                }
+            }
+            sb.append(anwer[i]).append('\n');
+        }
+
+        for(int i=0;i<N;i++) {
+            System.out.println(anwer[i]);
+        }
+
+
+
+    }
+
+
+
+}
+
+
+///Stringbuffer을 잘못 이해하고 있었다,,, 덕분에 확실하게 이해했다,
+
+package main.main2;
+
+import java.util.*;
+import java.io.IOException;
+
+public class Main {
+
+
+
+    public static void main(String[] args) throws IOException {
+
+        Scanner sc = new Scanner(System.in);
+
+
+        StringBuffer sb = new StringBuffer();
+
+        int N = sc.nextInt();
+        String[] anwer = new String[N];
+        sc.nextLine();
+
+        for(int i=0;i<N;i++){
+            anwer[i] = "";
+            String str = sc.nextLine();
+
+            Stack<Character> stack = new Stack<>();
+
+
+            for(int j=0;j<str.length();j++){
+                if(str.charAt(j)==' '){
+                    while(stack.size()!=0){
+                        sb.append(stack.pop());
+
+                    }
+                    sb.append(" ");
+                    continue;
+                }
+                stack.push(str.charAt(j));
+
+                if(j==(str.length()-1)){
+                    while(stack.size()!=0){
+                        sb.append(stack.pop());
+
+                    }
+                }
+            }
+            sb.append('\n');
+        }
+
+        System.out.println(sb);
+
+
+
+    }
+
+
+
+}
