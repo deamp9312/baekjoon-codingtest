@@ -1,0 +1,99 @@
+//point문제 발생,,, 조금더 좋은 방법이 있을꺼 같은데,,, 다음번에 고민해보기로하고 메모합니다..
+
+package main.main2;
+
+import java.util.*;
+import java.io.IOException;
+
+public class Main {
+
+    public static List<String> list = new ArrayList<>();
+    public static int point = 0;
+
+
+    public static void main(String[] args) throws IOException {
+
+        Scanner sc = new Scanner(System.in);
+        StringBuffer sb = new StringBuffer();
+
+
+        String N = sc.nextLine();
+        for(int i=0;i<N.length();i++){
+            list.add(""+N.charAt(i));
+        }
+
+        int M = Integer.parseInt( sc.nextLine());
+
+
+        point = N.length();
+
+        for (int i = 0; i < M; i++) {
+            String s = sc.nextLine();
+            String[] arr = s.split(" ");
+            System.out.println("s = " + s);
+            System.out.println("point = " + point);
+            switch (arr[0]) {
+                case "P":
+                    P(arr[1]);
+                    break;
+                case "L":
+                    L();
+                    break;
+
+                case "D":
+                    D();
+                    break;
+
+                case "B":
+                    B();
+                    break;
+            }
+            check();
+            System.out.println(list.toString());
+
+        }
+        System.out.println("result : " +list.toString());
+
+
+
+
+    }
+    public static void check(){
+        if(point<0){
+            point=0;
+        }
+
+        if(point>= list.size()){
+            point=list.size()-1;
+        }
+
+    }
+
+    public static void L() {
+        point--;
+
+    }
+
+    public static void D() {
+        point++;
+
+    }
+
+    public static void B() {
+        if (point == 0) {}
+        else {
+            list.remove(point - 1);
+            point--;
+        }
+    }
+
+    public static void P(String p) {
+        if (point != list.size())
+            list.add(point, p);
+        else
+            list.add(p);
+        point++;
+    }
+}
+
+
