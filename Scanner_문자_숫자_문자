@@ -1,0 +1,26 @@
+Scanner sc = new Scanner(System.in);
+
+ String str = sc.next();
+
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        int C = sc.nextInt();
+        sc.nextLine();        //문자에서 숫자로 갈때 상관없는데 숫자에서 문자로 갈때 엔터 혹은 스페이스바를 누를시 개행문자(?)로 인식되어 다음 받아들이는 문자
+        //가 공백이 된다 그것을 방지하기위해 한칸 뜨워준다
+
+        String str2 = sc.nextLine();
+        
+         System.out.println("a = " + A);
+        System.out.println("C = " + C);
+        System.out.println("str = " + str);
+        System.out.println("str2 = " + str2);
+
+
+//
+123213 2 23 22 14244 42424
+123 
+
+a = 2
+C = 22
+str = 123213
+str2 = 123 
