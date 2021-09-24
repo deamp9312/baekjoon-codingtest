@@ -1,0 +1,54 @@
+//4번이나 틀렸다,,, 틀리고 코드 수정하고,,,, 왜 안 되는거지 라는 생각을 보니,,, 입력부분에서는 100이하인것 같이 설명하고는,,,, 문제에서는 100일때 조건이였다,
+//,, ㅠ,,,ㅜ 아까운 내 시간,,,, 문제를 더 잘 읽어야 겠다,,,,,
+
+package main.main2;
+
+import java.util.*;
+import java.io.IOException;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+
+        Scanner sc = new Scanner(System.in);
+
+        int people = 9;
+
+        int[] arr = new int[people];
+
+
+        int sum = 0;
+
+        for (int i = 0; i < people; i++) {
+            arr[i] = sc.nextInt();
+            sum += arr[i];
+        }
+
+        Arrays.sort(arr);
+
+        for (int i = 0; i < people -1; i++) {
+
+            for (int k = i + 1; k < people ; k++) {
+
+                int anwer = sum - (arr[i] + arr[k]);
+                if (anwer == 100) {
+                    for(int j=0;j<people;j++){
+                        if(j!=i&&j!=k){
+
+                            System.out.println(arr[j]);
+                        }
+
+                    }
+                    System.exit(0);
+                }
+
+            }
+        }
+
+
+    }
+
+
+}
+
+
