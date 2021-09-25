@@ -1,0 +1,50 @@
+//오늘도 하나 배워간다,,, 문제에서 가로 세로를 col row기준으로 첫 문자를 빌린거같은데,,,, 반대로 해두어서 for문에 r대신c를 넣고 왜 안되는지 
+//보고있었다,,, 슬프다,, 내 시간,,,
+
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int R = sc.nextInt();//세로
+        int C = sc.nextInt();//가로
+
+        int dogR = sc.nextInt();
+        int dogC = sc.nextInt();
+
+        int sitR = sc.nextInt();
+        int sitC = sc.nextInt();
+
+
+
+        int sit = sitC * sitR;
+        int count = 0;
+
+        sc.nextLine();
+
+        for (int i = 0; i < R; i++) {
+            String str = sc.nextLine();
+            for (int k = 0; k < str.length(); k++) {
+                if (str.charAt(k) == 'P') {
+                    count++;
+                }
+            }
+
+        }
+
+        if (count == sit) {
+            System.out.println("0");
+
+        } else {
+            System.out.println("1");
+        }
+
+
+    }
+
+}
+
