@@ -1,0 +1,143 @@
+//문제 유형은 윈도우 문제라는데..
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+
+    public static int n, x;
+
+    public static int[] arr = new int[250001];
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        x = sc.nextInt();
+
+        int sum = 0;
+        for (int i = 1; i <= n; i++) {
+            arr[i] = sc.nextInt();
+            if(i<=x) sum += arr[i];
+        }
+
+        int max_sum=sum;
+        int count = 1;
+
+        int left = 1;
+        int right = x;
+        while (true) {
+
+            left++;
+            right++;
+            if (right > n) break;
+
+            sum = sum + arr[right] - arr[left-1];
+
+            if (max_sum == sum) {
+                count++;
+            } else if (max_sum < sum) {
+                max_sum=sum ;
+                count = 1;
+            }
+
+
+        }
+
+        if (max_sum == 0) System.out.print("SAD");
+        else {
+            System.out.println(max_sum);
+            System.out.print(count);
+        }
+
+    }
+
+}
+
+
+
+
+//내 방식대로 풀엇고 틀렸다,, 어느부분에서 틀린지 
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+
+
+    public static void main(String[] args) {
+
+
+        Scanner sc = new Scanner(System.in);
+
+        int N = sc.nextInt();
+        int X = sc.nextInt();
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        int count =0;
+        int max =0;
+        int daycount=0;
+        int[] visit = new int[N];
+        if(N==X){
+            for(int i=0;i<N;i++) {
+                visit[i] = sc.nextInt();
+                max += visit[i];
+            }
+            if(max==0) System.out.print("SAD");
+            else {
+                System.out.println(max);
+                System.out.print(1);
+            }
+            System.exit(0);
+        }
+
+        for(int i=0;i<N;i++){
+            visit[i] = sc.nextInt();
+            if(queue.size()!=X) {//x는 방문 날 예제1은 2일동안 2,5해서 7이 max
+                count+=visit[i];
+                queue.add(visit[i]);
+            }else{
+                if(count==max){
+                    daycount++;
+                }
+                if(count>max){
+                    max=count;
+                }
+                count -= queue.remove();
+                queue.add(visit[i]);
+                count += visit[i];
+            }
+        }
+
+        int num =0;
+        int numcount=0;
+        for (int i = 0; i < N; i++) {
+            if(numcount!=X) {
+                num += visit[i];
+                numcount++;
+                if(numcount==X&&num==max){
+                    daycount++;
+                }
+            }else {
+                num-=visit[i-X];
+                num += visit[i];
+                if(num==max){
+                    daycount++;
+                }
+            }
+        }
+
+
+        if(max==0) System.out.println("SAD");
+        else {
+            System.out.println(max);
+            System.out.print(daycount);
+        }
+
+
+    }
+
+}
+
+
