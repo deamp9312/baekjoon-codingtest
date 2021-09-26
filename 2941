@@ -1,0 +1,83 @@
+package main.main2;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+
+
+        String cro = sc.nextLine();
+
+        int count=0;
+        int length_count=0;
+        int length_result=0;
+        //5 ~4 34
+        for(int i=0;i<cro.length();i++){
+
+
+            if(i<=cro.length()-2) {
+                if (cro.charAt(i) == 'c') {//1,2
+                    if (cro.charAt(i + 1) == '-' || cro.charAt(i + 1) == '=') {
+                        length_count+=2;
+                        count++;
+                    }//3,4x
+                }
+                else if (cro.charAt(i) == 'l') {
+                    if (cro.charAt(i + 1) == 'j') {
+                        length_count+=2;
+                        count++;
+                    }//5
+                }
+                else if  (cro.charAt(i) == 'n') {
+                    if (cro.charAt(i + 1) == 'j') {
+                        length_count+=2;
+                        count++;
+                    }
+                }
+                else if  (cro.charAt(i) == 's') {
+                    if (cro.charAt(i + 1) == '=') {
+                        length_count+=2;
+                        count++;
+                    }
+                }
+                else if  (cro.charAt(i) == 'z') {
+                    if (cro.charAt(i + 1) == '=') {
+                        if ((i-1>=0)&&cro.charAt(i-1) == 'd') {
+                            continue;
+                        }
+                        length_count+=2;
+                        count++;
+                    }
+                }
+                else if  (cro.charAt(i) == 'd') {
+                    if (cro.charAt(i + 1) == '-') {
+                        length_count+=2;
+                        count++;
+                    }
+                }
+
+            }
+            if(i<=cro.length()-3) {
+                if (cro.charAt(i) == 'd') {
+                    if (cro.charAt(i + 1) == 'z') {
+                        if (cro.charAt(i + 2) == '=') {
+                            length_count+=3;
+                            count++;
+                        }
+                    }
+                }
+            }
+
+
+
+        }
+        length_result=cro.length()-length_count;
+        System.out.print(count+length_result);
+
+    }
+}
