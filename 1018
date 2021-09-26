@@ -1,0 +1,103 @@
+package main.main2;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    public static int xpoint,ypoint;
+    public static int[][] arr;
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        arr = new int[n][m];
+
+        sc.nextLine();
+
+        for (int i = 0; i < n; i++) {
+            String st = sc.nextLine();
+            String[] str = st.split("");
+            for (int k = 0; k < m; k++) {
+                if (str[k].equals("W")) {
+                    arr[i][k] = 0;
+                } else if (str[k].equals("B")) {
+                    arr[i][k] = 1;
+                }
+            }
+        }//색칠 다함 w =0 검색 =1
+        xpoint=0;
+        ypoint=0;
+//10-9
+        //8-07 18 29
+        int min=100;
+        for(int i=0;i<n-7;i++){
+            for(int k=0;k<m-7;k++){
+                int num = f1(i, k);
+                if(num<min){
+                    min=num;
+                }
+            }
+        }
+        System.out.println(min);
+
+
+
+
+
+    }
+
+    public static int f1(int xpoint,int ypoint){
+        int f_count =0;
+        int l_count =0;
+
+        int check = arr[xpoint][ypoint];    //1이면 다음 0
+
+        for(int i=xpoint;i<xpoint+8;i++){
+            for(int k=ypoint;k<ypoint+8;k++){
+
+                if(arr[i][k]!=check){
+
+                    f_count++;
+                }
+                    if (check == 1) {
+                        check = 0;
+                    }else check=1;
+
+            }
+            if (check == 0) {
+                check = 1;
+            }else check=0;
+        }
+
+        check = arr[xpoint][ypoint];
+
+        if (check == 1) {
+            check = 0;
+        }else check=1;
+
+        for(int i=xpoint;i<xpoint+8;i++){
+            for(int k=ypoint;k<ypoint+8;k++){
+
+                if(arr[i][k]!=check){
+                    l_count++;
+                }
+                    if (check == 1) {
+                        check = 0;
+                    }else check=1;
+
+            }
+            if (check == 0) {
+                check = 1;
+            }else check=0;
+        }
+        if(f_count>l_count)return l_count;
+        else return f_count;
+
+    }
+
+
+}
