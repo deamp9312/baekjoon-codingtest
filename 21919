@@ -1,0 +1,49 @@
+package main.main2;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+
+        long answer =1;
+        for(int i=0;i<n;i++){
+            long lon = sc.nextInt();
+            if(f1(lon)){
+                answer = f3(answer,lon);
+            }
+        }
+        if(answer ==1)answer=-1;
+        System.out.print(answer);
+
+
+
+
+
+    }
+
+    public static boolean f1(long a){//소수 판별
+
+        for(int i=2;i*i<=a;i++){
+            if(a%i==0)return false;
+        }
+        return true;
+    }
+
+    public static long f2(long a,long b){//최소
+        if(b==0)return a;
+        return f2(b,a%b);
+    }
+
+    public static long f3(long a,long b){
+        return a/f2(a,b)*b;
+    }
+
+
+}
