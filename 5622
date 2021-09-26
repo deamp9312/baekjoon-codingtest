@@ -1,0 +1,54 @@
+package main.main2;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+        //1 2초 그뒤 +1
+        String str = sc.nextLine();
+
+
+        int count=0;
+        for(int i=0;i<str.length();i++){
+            count += f1(str.charAt(i));
+        }
+        System.out.println(count);
+
+
+
+
+    }
+
+    public static int f1(char ch){//char받고 걸린시간 리턴
+
+        int sum=0;
+        if(ch=='A'||ch=='B'||ch=='C'){
+            sum+=3;
+        }else if(ch=='D'||ch=='E'||ch=='F'){
+            sum+=4;
+        }else if(ch=='G'||ch=='H'||ch=='I'){
+            sum+=5;
+        }else if(ch=='J'||ch=='K'||ch=='L'){
+            sum+=6;
+        }else if(ch=='M'||ch=='N'||ch=='O'){
+            sum+=7;
+        }else if(ch=='P'||ch=='Q'||ch=='R'||ch=='S'){
+            sum+=8;
+        }else if(ch=='T'||ch=='U'||ch=='V'){
+            sum+=9;
+        }
+        else if(ch=='W'||ch=='X'||ch=='Y'||ch=='Z'){
+            sum+=10;
+        }
+        return sum;
+
+
+    }
+
+
+}
