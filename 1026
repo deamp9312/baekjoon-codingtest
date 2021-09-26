@@ -1,0 +1,56 @@
+//point를 두어 한칸씩 이동하며 비교하는걸루 변형해서 만들어 봤다,, 기존 문제는 a,b배열에 sort만 해주고 오름차순 곱을 해주면 구하면 간단한 문제
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+
+    public static int n,point;
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+
+        n = sc.nextInt();
+
+        int[][] arr = new int[2][n];
+
+        for(int i=0;i<n;i++){
+            arr[0][i]=sc.nextInt();
+        }
+        for(int i=0;i<n;i++){
+            arr[1][i]=sc.nextInt();
+        }
+
+        int max_result = Integer.MAX_VALUE;
+        while (true) {
+            System.out.println("max_result = " + max_result);
+            System.out.println("point = " + point);
+            if(point==n)break;
+
+            int max = 0;
+            for (int i = 0; i < n; i++) {
+                int num = i + point;
+                if (num >= n) {
+                    num = i+point - n;
+                }
+                max += arr[0][num] * arr[1][i];
+            }
+            if (max < max_result) {
+                max_result = max;
+            }
+
+
+            point++;
+
+
+        }
+
+        System.out.println("max_result = " + max_result);
+
+    }
+
+
+}
+
