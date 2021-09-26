@@ -1,0 +1,40 @@
+package main.main2;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int x = sc.nextInt();
+
+        long count = 0;
+        long sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (f1(arr[i], x) == 1) {
+                count++;
+                sum += arr[i];
+            }
+        }
+//        System.out.printf("%.6f", (double)sum / count);
+        System.out.println((double)sum/count);
+
+    }
+
+    public static long f1(long a, long b) {
+        if (b == 0) return a;
+        return f1(b, a % b);
+    }
+
+
+}
