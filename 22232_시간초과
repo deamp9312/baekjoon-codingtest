@@ -1,0 +1,63 @@
+//막코딩을 했다,,, 솔직히 어떻게 해야할지 감이 안 잡혀서 sort내부 람다식을 어제 좀 배운걸 응용하고픈맘에 이렇게 했당,,
+package main.main2;
+
+import java.io.IOException;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        String[][] narr = new String[n][2];
+        String[] marr = new String[m];
+
+        sc.nextLine();
+        for(int i=0;i<n;i++){
+            String arr = sc.nextLine();
+            narr[i]=arr.split("\\.");
+        }
+
+        for(int i=0;i<m;i++){
+            marr[i] = sc.nextLine();
+        }
+        for(int i=0;i<n;i++){
+            for (int j = 0; j < m; j++) {
+                if(narr[i][1].equals(marr[j])){
+                    narr[i][1]=""+j;
+                }
+
+            }
+
+        }
+
+
+        Arrays.sort(narr,(o1,o2)->{
+            if(o1[0].equals(o2[0])){
+               return o1[1].compareTo(o2[1]);
+            }
+            return o1[0].compareTo(o2[0]);
+        });
+
+        for(int i=0;i<n;i++){
+            for (int j = 0; j < m; j++) {
+                if(narr[i][1].equals(String.valueOf(j))){
+                    narr[i][1]=marr[j];
+                }
+
+            }
+
+        }
+
+        for(int i=0;i<n;i++){
+            System.out.println(narr[i][0]+"."+narr[i][1]);
+        }
+
+
+    }
+
+
+}
