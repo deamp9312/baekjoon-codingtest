@@ -1,0 +1,114 @@
+//내가 풀던 방식대로 풀면 시간초과가 난다,,, 해결하려니 에라토스테네의 체 라는 알고리즘으로 시간을 단축가능하다 하고,,,,,
+//원리는 2배수 3배수 해서 먼저 소수가 아닌것을 지워나가고 그외의 것을 검증해 나가는것인데
+package main.main2;
+
+import java.io.IOException;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+
+        while (true) {
+            int n = sc.nextInt();
+
+            if (n == 0) break;
+
+
+            int a = 0;
+            int b = 0;
+            int max = -100;
+            int check_a = 0;
+            int check_b = 0;
+
+            for (int i = 3; i <= n; i++) {
+                a = i;
+                b = n - i;
+                int num = b - a;
+
+
+                if (f1(a) && f1(b)) {
+//                    sb.append(n + " = " + a + " + " + b).append('\n');
+                    if (num > max) {
+
+                        max = num;
+                        check_a = a;
+                        check_b = b;
+                    }
+                }
+            }
+
+            if (max == -100) sb.append("Goldbach's conjecture is wrong.").append('\n');
+            else
+                sb.append(check_a + check_b + " = " + check_a + " + " + check_b).append('\n');
+
+
+        }
+        System.out.println(sb);
+
+
+    }
+
+    public static boolean f1(int a) {
+        for (int i = 3; i < a; i++) {
+            if (a % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+}
+
+//알고리즘 검색후
+//적용
+package main.main2;
+
+import java.io.IOException;
+import java.util.*;
+
+public class Main {
+    public static boolean[] bol = new boolean[1000001];
+
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=2;i<bol.length;i++){
+            if(!bol[i]){
+                for(int j=i*2;j< bol.length;j+=i){
+                    bol[j]=true;
+                }
+            }
+        }
+
+        while (true) {
+            int n = sc.nextInt();
+            boolean exists = false;
+
+            if (n == 0) break;
+
+            for(int i=3;i<n;i++){
+                if(!bol[i]&&!bol[n-i]){
+                    sb.append(n + " = " + i + " + " + (n - i)).append('\n');
+                    exists=true;
+                    break;
+                }
+            }
+            if(!exists){
+                sb.append("Goldbach's conjecture is wrong.").append('\n');
+            }
+
+
+        }
+        System.out.println(sb);
+
+
+    }
+
+
+}
+
