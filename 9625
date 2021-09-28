@@ -1,0 +1,32 @@
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args)  {
+        Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+
+        int k = sc.nextInt();
+
+
+        int a =1;
+        int b=0;
+        for(int i=0;i<k;i++){
+            int a_num=b;
+            int b_num=a+b;
+
+            a = a_num;
+            b = b_num;
+
+
+
+        }
+        System.out.println(a +" "+ b);
+
+
+    }
+
+}
+
