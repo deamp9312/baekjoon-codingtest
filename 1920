@@ -1,0 +1,62 @@
+바이너리 서치,,, 알고리즘을 구현하는과정에서 오류가 많이나,,, 확실히,,,, 배웠다,,,ㅜㅜㅜ
+
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+    public static int n, m;
+    public static int[] arr, arr2;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+
+        n = sc.nextInt();
+        arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        Arrays.sort(arr);
+
+        m = sc.nextInt();
+        arr2 = new int[m];
+        for (int i = 0; i < m; i++) {
+            arr2[i] = sc.nextInt();
+            int num =by_search(arr2[i]);
+
+            if(i==m-1){
+                sb.append(num);
+            }else {
+                sb.append(num).append('\n');
+            }
+        }
+        System.out.print(sb);
+
+
+
+    }
+
+    public static int by_search(int point) {
+
+        int first=0;
+        int last =n-1;
+
+        while (first<=last){
+
+            int middle = (first + last) / 2;
+            if(point==arr[middle]){
+                return 1;
+            }else if(point>arr[middle]){
+                first=middle+1;
+            }else if (point<arr[middle]){
+                last=middle-1;
+            }
+        }
+        return 0;
+
+    }
+
+}
+
