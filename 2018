@@ -1,0 +1,49 @@
+//2point 문제 너무 매력적이다,, 같은 패턴내에서 변경되는 숫자와 관계 규칙만 설정하면 다 된다!!
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+    public static Long n, m;
+    public static int[] arr, arr2;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+
+        n = sc.nextLong();
+
+        int count =0;
+
+        int left =1;
+        int right = 1;
+        int sum =1;
+        while (left<=right&&right<=n){
+
+            if(sum==n){
+                count++;
+                sum-=left;
+                left+=1;
+                right+=1;
+                sum+=right;
+
+
+            }else if(sum>n){
+                sum-=left;
+                left+=1;
+
+            }else {
+                right+=1;
+                sum+=right;
+            }
+
+        }
+        System.out.println(count);
+
+
+
+    }
+
+
+}
+
