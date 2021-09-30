@@ -1,0 +1,68 @@
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+    public static boolean[] check;
+    public static boolean[][] table;
+    static int n;
+
+    static void DFS(int k){
+        System.out.print(k + " ");
+        check[k]= true;
+
+        for(int i=1;i<=n;i++){
+            if(!check[i]&&table[k][i]){
+                DFS(i);
+            }
+        }
+    }
+    static void BFS(int k){
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(k);
+        check[k] =true;
+        while (!queue.isEmpty()){
+            int from = queue.poll();
+            System.out.print(from+" ");
+            for(int i=1;i<=n;i++){
+                if (!check[i] && table[from][i]) {
+                    check[i]=true;
+                    queue.add(i);
+                }
+            }
+        }
+
+    }
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+
+        n = sc.nextInt();
+        int m = sc.nextInt();
+        int v = sc.nextInt();
+
+        table = new boolean[n + 1][n + 1];
+
+        for(int i=0;i<m;i++){
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+
+            table[a][b] = true;
+            table[b][a] = true;
+        }
+        check = new boolean[n + 1];
+        DFS(v);
+        System.out.println();
+
+        check = new boolean[n + 1];
+        BFS(v);
+
+
+    }
+
+
+
+}
+
