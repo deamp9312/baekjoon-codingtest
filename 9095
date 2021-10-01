@@ -1,0 +1,40 @@
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+    static int[][] arr;
+    static int n;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+
+        int a = 1;
+        int b = 2;
+        int c = 4;
+
+        int t = sc.nextInt();
+
+
+        for (int i = 0; i < t; i++) {
+            int n = sc.nextInt();
+            sb.append(f1(n)).append('\n');
+
+        }
+        System.out.println(sb);
+
+    }
+
+    public static int f1(int n) {
+        int sum = 0;
+        if (n == 1) return 1;
+        else if (n == 2) return 2;
+        else if (n == 3) return 4;
+        else if (n > 3) {
+            sum = f1(n - 3) + f1(n - 2) + f1(n - 1);
+        }
+        return sum;
+    }
+}
+
