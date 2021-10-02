@@ -1,0 +1,94 @@
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+    static StringBuilder sb = new StringBuilder();
+    public static int n, max_money;
+    public static int[][] arr;
+    static LinkedList<Integer> list = new LinkedList<>();
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt(); //총 갯수
+
+        sc.nextLine();
+
+        for (int i = 0; i < n; i++) {
+            switch (sc.next()) {
+                case "push":
+                    push(sc.nextInt());
+                    break;
+                case "pop":
+                    pop();
+                    break;
+                case "size":
+                    size();
+                    break;
+                case "empty":
+                    empty();
+                    break;
+                case "front":
+                    front();
+                    break;
+                case "back":
+                    back();
+                    break;
+            }
+        }
+        System.out.println(sb);
+
+
+    }
+
+    public static void push(int i) {
+        list.add(i);
+    }
+
+    public static void pop() {
+        if(list.isEmpty()){
+            sb.append(-1).append('\n');
+        }else
+            sb.append(list.remove(0)).append('\n');
+    }
+
+    public static void size() {
+
+        sb.append(list.size()).append('\n');
+
+    }
+
+    public static void empty() {
+        if(list.isEmpty()){
+            sb.append(1).append('\n');
+        }else {
+            sb.append(0).append('\n');
+        }
+
+
+    }
+
+    public static void front() {
+        if(list.isEmpty()){
+            sb.append(-1).append('\n');
+        }else {
+            sb.append(list.getFirst()).append('\n');
+        }
+
+    }
+
+    public static void back() {
+
+        if(list.isEmpty()){
+            sb.append(-1).append('\n');
+        }else {
+            sb.append(list.getLast()).append('\n');
+        }
+    }
+
+}
+
+
+
+
