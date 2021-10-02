@@ -1,0 +1,53 @@
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+    static StringBuilder sb = new StringBuilder();
+    static int n, m;
+    static int[][] arr;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt(); //총 갯수
+        m = sc.nextInt(); //총 갯수
+
+
+        arr = new int[n][m];
+
+        sc.nextLine();
+        for (int i = 0; i < n; i++) {
+            String str = sc.nextLine();
+            String[] strr = str.split("");
+            for (int j = 0; j < strr.length; j++) {
+                arr[i][j] = Integer.parseInt(strr[j]);
+            }
+        }
+
+        int answer =0;
+        for(int i=0;i<n;i++){
+            for(int k=0;k<m;k++){
+                for(int l=1;l+i<n&&l+k<m;l++){
+                    if(arr[i][k]==arr[i+l][k]&&arr[i][k]==arr[i][k+l]&&arr[i][k]==arr[i+l][k+l]){
+                        if(answer<(1+l)*(1+l)){
+                            answer = (1 + l) * (1 + l);
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println(answer);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
