@@ -1,0 +1,58 @@
+//43라인에 depth+=1;로 해두고서 왜 오류나지 이러고 있었습니다 ㅋㅋㅋㅋㅋㅋㅋㅋ
+
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+    static StringBuilder sb = new StringBuilder();
+    public static int a,n, m;
+    public static int[] arr,arr2;
+    public static boolean[] bol;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+
+        arr = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=i+1;
+        }
+        arr2 = new int[n];
+        bol = new boolean[n];
+
+        f1(0);
+    }
+
+    public static void f1(int depth){
+
+        if(depth==n){
+            for (int j : arr2) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+            return;
+        }
+        for(int i=0;i<n;i++){
+            if (!bol[i]) {
+                arr2[depth]=arr[i];
+                bol[i]=true;
+
+
+                f1(depth+1);
+                bol[i] = false;
+            }
+
+        }//123 132
+
+    }
+
+}
+
+
+
+
+
+
+
