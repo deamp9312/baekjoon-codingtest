@@ -1,0 +1,63 @@
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+    static StringBuilder sb = new StringBuilder();
+    public static boolean[] check;
+    public static boolean[][] booleans;
+    public static int[] arr;
+    public static int n, m, v=-1;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        m = sc.nextInt();
+        booleans = new boolean[n + 1][n + 1];
+        check = new boolean[n + 1];
+
+        for (int i = 0; i < m; i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+
+            booleans[a][b] = true;
+            booleans[b][a] = true;
+        }
+        int v_check=0;
+
+        int v_num=0;
+
+        for (int i = 1; i <= n; i++) {
+            v_num=v;
+            dfs(i);
+            if(v_num!=v){
+                v_check++;
+            }
+
+
+        }
+        System.out.println(v_check);
+
+    }
+
+    public static void dfs(int num) {
+
+        if(check[num])return;
+
+        check[num] = true;
+        v++;
+        for (int i = 1; i <= n; i++) {
+            if (!check[i] && booleans[num][i]) {
+                dfs(i);
+
+            }
+        }
+    }
+}
+
+
+
+
+
+
