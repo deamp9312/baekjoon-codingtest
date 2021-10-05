@@ -1,0 +1,79 @@
+package main.main2;
+
+import java.util.*;
+
+public class Main {
+    static StringBuilder sb = new StringBuilder();
+
+    public static boolean[][] check;
+    public static int[][] arr;
+    public static int[] move_x = {0,1,1,1,0,-1,-1,-1};
+    public static int[] move_y = {1,1,0,-1,-1,-1,0,1};
+    public static int w,h;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+
+        while (true) {
+            h = sc.nextInt();
+            w = sc.nextInt();
+
+            if (w == 0 && h == 0) {
+                break;
+            }
+
+
+             arr = new int[w][h];
+             check = new boolean[w][h];
+
+            for(int i=0;i<w;i++){
+                for(int k=0;k<h;k++){
+                    arr[i][k] = sc.nextInt();
+
+                }
+            }
+            int count=0;
+
+             for(int i=0;i<w;i++){
+                for(int k=0;k<h;k++){
+                    if(!check[i][k]&&arr[i][k]==1){
+                        dfs(i, k);
+                        count++;
+                    }
+
+                }
+            }
+            sb.append(count).append('\n');
+
+
+        }
+        System.out.println(sb);
+
+    }
+
+    public static void dfs(int x,int y){
+        check[x][y] = true;
+
+        for(int i=0;i<move_x.length;i++){
+            int moving_x = x + move_x[i];
+            int moving_y = y + move_y[i];
+
+            if(moving_x>=0&&moving_y>=0&&moving_x<w&&moving_y<h) {
+                if (!check[moving_x][moving_y] && arr[moving_x][moving_y] == 1) {
+                    dfs(moving_x, moving_y);
+                }
+            }
+
+
+        }
+
+
+    }
+}
+
+
+
+
+
+
