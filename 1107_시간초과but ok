@@ -1,0 +1,76 @@
+package main.main2;
+
+
+import java.util.*;
+
+public class Main {
+    static int[] nums;
+    static boolean[] visited;
+    static int N;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();   //해당 채널이 답
+        int m = sc.nextInt();   //고장난 갯수
+        String[] arr = new String[n];   //고장난 번호 목록
+        sc.nextLine();//개행
+        for (int i = 0; i < m; i++) {
+            arr[i] = sc.next();//고장난게 true
+        }
+
+        //n=100 기본 채널
+        int result = n - 100;
+        if (result < 0) {
+            result *= -1;
+        }
+
+
+        int point = 0;  //point를 증감 시키며 n기준 번호 비교
+
+        while (true) {//문자열로 up / down으로 나눠 contains를 이용해 비교
+
+            String up = String.valueOf(n + point);
+            String down = String.valueOf(n - point);
+            boolean check = false;
+
+            for (int i = 0; i < m; i++) {//고장난 번호 목록 배열과 비교해 해당 문자열 포함시 틀림
+                if (up.contains(arr[i])) {
+                    check = false;
+                    break;
+                } else {
+                    check = true;
+                }
+            }
+            if (check) {//point는 +누른 횟수 , up.length는 키번호 누른 갯수(ex 12 -> 2개)
+                    point = point + up.length();
+                break;
+            }
+
+
+            for (int i = 0; i < m; i++) {
+                if (down.contains(arr[i])) {
+                    check = false;
+                    break;
+                } else {
+                    check = true;
+                }
+            }
+
+            if (check) {
+                    point = point + down.length();
+                break;
+            }
+
+            point++;
+
+        }
+        if (result > point)//번호를 +or-로 누를때 가까운지 or 번호 누른뒤 +,-누를때 최소인지
+            System.out.println(point);
+        else
+            System.out.println(result);
+
+
+
+    }
+}
