@@ -1,0 +1,40 @@
+package main.main2;
+
+
+import java.util.*;
+
+public class Main {
+
+    public static StringBuffer sb = new StringBuffer();
+    static int n, m;
+    public static boolean[] visit;
+    public static boolean[] arr,arr2;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        long x = sc.nextLong();//게임 횟수
+        long y = sc.nextLong();  //이긴 게임
+
+        long z =y*100/x;
+
+        long l =0L;
+        long r = 1000000000L;
+        long m = -1;
+        if(x==y||99<=(y*100/x)){
+            System.out.println(-1);
+            System.exit(0);
+        }
+
+        while (l<=r){
+            m = (l + r) / 2;
+            long z_new = (y + m) * 100 / (x + m);
+            if(z_new<=z){
+                l=m+1;
+            }else {
+                r=m-1;
+            }
+
+        }
+        System.out.println(l);
+    }
+}
