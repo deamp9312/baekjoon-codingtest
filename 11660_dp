@@ -1,0 +1,51 @@
+package main.main2;
+
+
+import java.util.*;
+
+public class Main {
+
+    public static StringBuffer sb = new StringBuffer();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        int[][] arr = new int[n+1][n+1];
+        int[][] dp = new int[n+1][n+1];
+
+        for(int i=1;i<=n;i++){
+            for(int k=1;k<=n;k++){
+                arr[i][k] = sc.nextInt();
+            }
+        }
+        for(int i=1;i<=n;i++){
+            for(int k=1;k<=n;k++){
+                dp[i][k] = dp[i-1][k]+dp[i][k-1]-dp[i-1][k-1]+arr[i][k];
+            }
+        }
+        int[][] search = new int[m][4];
+        for(int i=0;i<m;i++){
+            for(int k=0;k<4;k++){
+                search[i][k] = sc.nextInt();
+
+
+
+            }
+            int x1 = search[i][0];
+            int y1 = search[i][1];
+
+            int x2 = search[i][2];
+            int y2 = search[i][3];
+
+            int sum = dp[x2][y2] - dp[x2][y1-1] - dp[x1-1][y2] + dp[x1-1][y1-1];
+            sb.append(sum).append('\n');
+        }
+
+
+        System.out.print(sb);
+
+
+    }
+}
