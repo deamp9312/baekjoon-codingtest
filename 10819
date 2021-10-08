@@ -1,0 +1,57 @@
+package main.main2;
+
+
+import java.util.*;
+
+public class Main {
+    public static StringBuffer sb = new StringBuffer();
+
+    public static boolean[] check;
+    public static int n,result=Integer.MIN_VALUE;
+    public static int[] arr,arr2;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+
+        arr = new int[n];
+        arr2 = new int[n];
+        check = new boolean[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        dfs(0);
+        System.out.println(result);
+
+
+
+
+    }
+    public static void dfs(int depth){
+        if(depth==n){
+            int num=0;
+            for(int i=0;i<n-1;i++){
+
+                num += Math.abs(arr2[i]-arr2[i+1]);
+            }
+            result = Math.max(num, result);
+            return;
+        }
+
+
+        for(int i=0;i<n;i++){
+            if(!check[i]){
+                check[i]=true;
+                arr2[depth] = arr[i];
+                dfs(depth+1);
+                check[i]=false;
+            }
+        }
+
+
+
+    }
+
+}
