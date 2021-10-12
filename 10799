@@ -1,0 +1,46 @@
+package main.main2;
+
+
+import java.util.*;
+
+
+public class Main {
+    public static StringBuffer sb = new StringBuffer();
+
+    public static boolean[] booleans;
+    public static int n, result, k, point = 0;
+    public static int[] arr, arr2;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+
+        String str = sc.nextLine();
+        Stack<Character> stack = new Stack<>();
+
+        int result=0;
+        for(int i=0;i<str.length();i++){
+
+            if(str.charAt(i)=='(') {
+                stack.add(str.charAt(i));
+            }else {
+                stack.pop();
+                if (str.charAt(i-1) == '(') {
+                    result += stack.size();
+
+                } else {
+                    result++;
+                }
+            }//(((()(()()))(())()))(()())
+
+        }
+
+        System.out.println(result);
+
+
+
+    }
+
+
+}
+
