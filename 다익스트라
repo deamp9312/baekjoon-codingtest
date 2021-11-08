@@ -1,0 +1,76 @@
+package main.main2;
+
+import java.util.*;
+
+
+public class Main {
+  static int n,e;
+  static int[][] graph;
+  static int[] dist;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        e = sc.nextInt();
+        graph = new int[n][n];
+        dist = new int[n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(i==j)graph[i][j]=0;
+                else graph[i][j] = Integer.MAX_VALUE-1000;
+            }
+        }
+
+        for(int i=0;i<e;i++){
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            int cost = sc.nextInt();
+            graph[u][v] = graph[v][u]=cost;
+        }
+        dijkstra(0);
+        for(int i=0;i<n;i++){
+            System.out.println("dist[i] = " + dist[i]);
+            System.out.println("================");
+        }
+
+    }
+
+    private static void dijkstra(int src) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>(((o1, o2) -> o1[0] - o2[0]));
+        boolean[] visited = new boolean[n];
+        for (int i = 0; i < n; i++) dist[i] = Integer.MAX_VALUE;
+        dist[src] =0;
+        pq.add(new int[]{0, src});
+
+        while (!pq.isEmpty()) {
+            System.out.println("==============");
+            int[] curr = pq.poll();
+            for (int i : curr) {
+                System.out.println("i = " + i);
+            }
+            int u = curr[1];
+            if(visited[u])continue;
+            System.out.println("u = " + u);
+
+            visited[u]=true;
+            for(int v=0;v<n;v++){
+                System.out.println("dist[v] = " + dist[v]);
+                System.out.println("dist[u] = " + dist[u]);
+                System.out.println("graph[u][v] = " + graph[u][v]);
+                if (dist[v]>dist[u]+graph[u][v]){
+                    dist[v]=dist[u]+graph[u][v];
+                    pq.add(new int[]{dist[v], v});
+                }
+                System.out.println("dist[v] = " + dist[v]);
+
+                System.out.println("===========for==================");
+
+            }
+        }
+
+    }
+
+}
+
+
