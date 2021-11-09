@@ -1,0 +1,85 @@
+ 메모리 초과가 난다...ㅠㅠ===== 사람들이 푸는거 봤는데 함수 재정의 해서 내부 compare를 이용해 사용하는방법을 시도해봐야 겠습니다...ㅠ
+package main.main2;
+
+import java.util.*;
+
+
+public class Main {
+    public static int v,e,k;
+    public static int[][] table;
+    public static int[] weight;
+    public static boolean[] booleans;
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+
+        Scanner sc = new Scanner(System.in);
+        v = sc.nextInt();
+        e = sc.nextInt();
+        k = sc.nextInt(); //해당 정점부터 시작
+        table = new int[v+1][v+1];//1~v번까지 입력하더라..
+        weight = new int[v + 1];
+        booleans = new boolean[v +1];
+
+        for(int i=0;i<e;i++){
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int c = sc.nextInt();
+            table[a][b]=c;
+//            weight[i+1]=c;
+        }
+        f1(k);
+
+        for (int i =1;i< weight.length;i++ ) {
+            if(weight[i]!=11){
+                sb.append(weight[i]).append('\n');
+            }else {
+                sb.append("INF");
+            }
+        }
+        System.out.println(sb);
+
+
+
+    }
+    public static void f1(int a){
+
+        PriorityQueue<int[]> pq = new PriorityQueue<>((o1, o2) ->{
+            return o1[0] - o2[0];
+        });
+        for(int i=1;i<weight.length;i++){
+            weight[i]=11;
+        }
+        weight[a] = 0;
+        pq.add(new int[]{0,a});
+        while (!pq.isEmpty()){
+            int[] curr = pq.poll();
+            int u = curr[1];
+            if(booleans[u]){
+                continue;
+            }
+            booleans[u]=true;
+            for(int j=1;j<=v;j++){
+                System.out.println("j = " + j);
+                if(table[u][j]==0)table[u][j]=11;
+                if(u==j)table[u][j]=0;
+
+                if(weight[j]>weight[u]+table[u][j]){
+                    weight[j]=weight[u]+table[u][j];
+                    pq.add(new int[]{weight[j], j});
+                }
+
+            }
+
+
+
+
+        }
+
+
+
+
+
+    }
+}
+
+
