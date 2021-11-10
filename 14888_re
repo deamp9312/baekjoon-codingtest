@@ -1,0 +1,149 @@
+==기존에 시간초과가 난다,
+import java.util.*;
+
+
+public class Main {
+
+    public static int n,num,max=Integer.MIN_VALUE,min=Integer.MAX_VALUE;
+    public static int[] ints,table,used,ints_used;
+    public static StringBuilder sb = new StringBuilder();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        ints = new int[n];
+        for(int i=0;i<n;i++){
+            ints[i] = sc.nextInt();
+        }
+        table = new int[4];//플 , 마 , 곱 , 나
+        for(int i=0;i<4;i++){
+            table[i] = sc.nextInt();
+        }
+        num += ints[0];
+        f1(1);
+        System.out.println(max);
+        System.out.println(min);
+
+    }
+    public static void f1(int depth){
+        if(depth==n){
+            if(max<num)max=num;
+            if(min>num)min=num;
+            return;
+        }
+
+        for(int i=depth;i<n;i++){
+
+            for(int k=0;k<4;k++){
+                if(table[k]!=0){
+                    switch (k){
+                        case 0:
+                            table[0]--;
+                            num += ints[depth];
+                            f1(depth+1);
+                            num -= ints[depth];
+                            table[0]++;
+                            break;
+                        case 1:
+                            table[1]--;
+                            num -= ints[depth];
+                            f1(depth + 1);
+                            num += ints[depth];
+                            table[1]++;
+                            break;
+                        case 2:
+                            table[2]--;
+                            int defult=num;
+                            num *= ints[depth];
+                            f1(depth + 1);
+                            num =defult;
+                            table[2]++;
+                            break;
+                        case 3:
+                            table[3]--;
+                            int defult2=num;
+                            num /= ints[depth];
+                            f1(depth+1);
+                            num=defult2;
+                            table[3]++;
+                            break;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+===변경 후 해결(num을 매개변수로 전달해주며 값을 계산하면 / *의 버림수를 해결할수 있다,
+package main.main2;
+
+import java.util.*;
+
+
+public class Main {
+
+    public static int n,num,max=Integer.MIN_VALUE,min=Integer.MAX_VALUE;
+    public static int[] ints,table,used,ints_used;
+    public static StringBuilder sb = new StringBuilder();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        ints = new int[n];
+        for(int i=0;i<n;i++){
+            ints[i] = sc.nextInt();
+        }
+        table = new int[4];//플 , 마 , 곱 , 나
+        for(int i=0;i<4;i++){
+            table[i] = sc.nextInt();
+        }
+        num += ints[0];
+        f1(num,1);
+        System.out.println(max);
+        System.out.println(min);
+
+    }
+    public static void f1(int num,int depth){
+        if(depth==n){
+            if(max<num)max=num;
+            if(min>num)min=num;
+            return;
+        }
+
+
+            for(int k=0;k<4;k++){
+
+                if(table[k]!=0){
+                    switch (k){
+                        case 0:
+                            table[0]--;
+                            f1(num+ints[depth],depth+1);
+                            table[0]++;
+                            break;
+                        case 1:
+                            table[1]--;
+                            f1(num -ints[depth],depth + 1);
+                            table[1]++;
+                            break;
+                        case 2:
+                            table[2]--;
+                            f1(num * ints[depth],depth + 1);
+                            table[2]++;
+                            break;
+                        case 3:
+                            table[3]--;
+                            f1(num / ints[depth],depth+1);
+                            table[3]++;
+                            break;
+                    }
+                }
+            }
+        }
+
+}
+
+
+
+
+
